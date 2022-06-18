@@ -1,4 +1,4 @@
-﻿using HoursControl.Application.Objects;
+﻿using HoursControl.Application;
 
 namespace HoursControl.Application.Interfaces
 {

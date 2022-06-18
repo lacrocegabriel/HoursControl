@@ -1,8 +1,7 @@
-﻿
-using HoursControl.Application.Interfaces;
-using HoursControl.Application.Objects;
+﻿using HoursControl.Application.Interfaces;
+using HoursControl.Application;
 
-namespace Registro_Pronto.Application.Services
+namespace HoursControl.Application.Services
 {
     public class RecordService : IRecordService
     {

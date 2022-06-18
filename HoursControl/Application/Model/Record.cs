@@ -1,4 +1,4 @@
-﻿namespace HoursControl.Application.Objects
+﻿namespace HoursControl.Application
 {
     public class Record
     {
