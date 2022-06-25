@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Registro_Pronto.Migrations
 {
-    [DbContext(typeof(RecordContext))]
+    [DbContext(typeof(ApplicationContext))]
     partial class RecordContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace Registro_Pronto.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Record");
+                    b.ToTable("Record", (string)null);
                 });
 #pragma warning restore 612, 618
         }

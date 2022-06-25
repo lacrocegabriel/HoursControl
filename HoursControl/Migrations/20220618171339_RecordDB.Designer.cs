@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Registro_Pronto.Migrations
 {
-    [DbContext(typeof(RecordContext))]
+    [DbContext(typeof(ApplicationContext))]
     [Migration("20220618171339_RecordDB")]
     partial class RecordDB
     {

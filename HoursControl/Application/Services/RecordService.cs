@@ -1,28 +1,38 @@
 ﻿using HoursControl.Application.Interfaces;
-using HoursControl.Application;
+using HoursControl.Application.Model;
 
 namespace HoursControl.Application.Services
 {
     public class RecordService : IRecordService
     {
-        public void AddRegister(Record record)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly IRecordRepository _recordRepository;
+        
 
-        public void RemoveRegister(Guid id)
+        public RecordService(
+                IRecordRepository recordRepository)
         {
-            throw new NotImplementedException();
+            _recordRepository = recordRepository;
+           
         }
 
         public void SerchRegister(Guid id)
         {
-            throw new NotImplementedException();
+            _recordRepository.SerchRegister(id);
+        }
+
+        public void AddRegister(Record record)
+        {
+            _recordRepository.AddRegister(record);
+        }
+
+        public void RemoveRegister(Record record)
+        {
+            _recordRepository.RemoveRegister(record);
         }
 
         public void UpdateRegister(Record record)
         {
-            throw new NotImplementedException();
+            _recordRepository.UpdateRegister(record);
         }
     }
 }

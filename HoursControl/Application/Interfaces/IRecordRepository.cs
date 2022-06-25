@@ -1,4 +1,4 @@
-﻿using HoursControl.Application;
+﻿using HoursControl.Application.Model;
 
 namespace HoursControl.Application.Interfaces
 {
@@ -7,7 +7,7 @@ namespace HoursControl.Application.Interfaces
         void SerchRegister(Guid id);
         void AddRegister(Record record);
         void UpdateRegister(Record record);
-        void RemoveRegister(Guid id);
+        void RemoveRegister(Record record);
         
     }
 }
