@@ -1,4 +1,4 @@
-﻿using HoursControl.Application.Interfaces;
+﻿using HoursControl.Application.Interfaces.Repository;
 using HoursControl.Application.Model;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,30 +6,33 @@ namespace HoursControl.Application.Repository
 {
     public class RecordRepository : IRecordRepository
     {
-        ApplicationContext context = new ApplicationContext();
-
-        public async void SerchRegister(Guid id)
+        
+        public Record SerchRegister(Guid id)
         {
-            //context.Record.AsNoTracking()
-            //.FirstOrDefaultAsync(f => f.Id == id);
-
+            using var db = new ApplicationContext();
+            var record = db.Records.FirstOrDefault(r => r.Id == id);
+            return record;
         }
 
         public void AddRegister(Record record)
         {
-            context.Add(record);
+            using var context = new ApplicationContext();
+            context.Records.Add(record);
             context.SaveChanges();
         }
 
-        public void RemoveRegister(Record record)
+        public void RemoveRegister(Guid id)
         {
-            context.Remove(record);
-            context.SaveChanges();
+            using var db = new ApplicationContext();
+            var record = db.Records.FirstOrDefault(r => r.Id == id);
+            db.Records.Remove(record);
+            db.SaveChanges();
         }
 
        public void UpdateRegister(Record record)
         {
-            context.Update(record);
+            using var context = new ApplicationContext();
+            context.Records.Update(record);
             context.SaveChanges();
         }
 

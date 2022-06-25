@@ -1,13 +1,13 @@
 ﻿using HoursControl.Application.Model;
 
-namespace HoursControl.Application.Interfaces
+namespace HoursControl.Application.Interfaces.Repository
 {
     public interface IRecordRepository
     {
-        void SerchRegister(Guid id);
+        Record SerchRegister(Guid id);
         void AddRegister(Record record);
         void UpdateRegister(Record record);
-        void RemoveRegister(Record record);
-        
+        void RemoveRegister(Guid id);
+
     }
 }

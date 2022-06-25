@@ -1,5 +1,6 @@
-﻿using HoursControl.Application;
-using HoursControl.Application.Interfaces;
+﻿using HoursControl.Application.Interfaces.Repository;
+using HoursControl.Application.Interfaces.Service;
+using HoursControl.Application.Model;
 using HoursControl.Application.Repository;
 using HoursControl.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,23 +16,27 @@ namespace HoursControl
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             var recordService = serviceProvider.GetService<IRecordService>();
+            var employeeService = serviceProvider.GetService<IEmployeeService>();
 
-            //Console.Write("Enter the date and time of registration: ");
-            //DateTime record = DateTime.Parse(Console.ReadLine());
-            //Console.Write("Enter the task to be performed: ");
-            //var task = Console.ReadLine();
+            employeeService.AddRegister(
+                new Employee
+                {
+                    Id = Guid.NewGuid(),
+                    CPF = "10722258917",
+                    Name = "Gabriel Palma Lacroce",
+                    BithDate = DateTime.Now
+                });
 
-            //Record record1 = new Record(Guid.NewGuid(), record, task);
 
-            Guid guid = Guid.Parse("12933A55-B335-451A-9B3B-AEF1103F6A86");
-
-            recordService.SerchRegister(guid);
 
         }
         public static void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IRecordRepository, RecordRepository>()
-                .AddScoped<IRecordService, RecordService>();
+                .AddScoped<IRecordService, RecordService>()
+                .AddScoped<IEmployeeService, EmployeeService>()
+                .AddScoped<IEmployeeRepository, EmployeeRepository>();
+                
         }
 
     }

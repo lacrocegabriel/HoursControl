@@ -1,4 +1,5 @@
-﻿using HoursControl.Application.Interfaces;
+﻿using HoursControl.Application.Interfaces.Repository;
+using HoursControl.Application.Interfaces.Service;
 using HoursControl.Application.Model;
 
 namespace HoursControl.Application.Services
@@ -15,9 +16,9 @@ namespace HoursControl.Application.Services
            
         }
 
-        public void SerchRegister(Guid id)
+        public Record SerchRegister(Guid id)
         {
-            _recordRepository.SerchRegister(id);
+            return _recordRepository.SerchRegister(id);
         }
 
         public void AddRegister(Record record)
@@ -25,9 +26,9 @@ namespace HoursControl.Application.Services
             _recordRepository.AddRegister(record);
         }
 
-        public void RemoveRegister(Record record)
+        public void RemoveRegister(Guid id)
         {
-            _recordRepository.RemoveRegister(record);
+            _recordRepository.RemoveRegister(id);
         }
 
         public void UpdateRegister(Record record)
