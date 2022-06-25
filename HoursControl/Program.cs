@@ -151,31 +151,40 @@ namespace HoursControl
 
                 if (option == 1)
                 {
-                    Console.Clear();
-                    Console.Write("Digite o CPF do funcinário da tarefa: ");
-                    var cpf = Console.ReadLine();
-                    var employee = employeeService.SerchForCPF(cpf);
-                    Console.WriteLine();
-                    Console.WriteLine("Informações do funcionário:");
-                    Console.WriteLine($"Nome: {employee.Name}");
-                    Console.WriteLine($"CPF: {employee.CPF}");
-                    Console.WriteLine($"Data de Nascimento: {employee.BithDate}");
-                    Console.WriteLine();
-                    Console.WriteLine("Digite o codigo da tarefa: ");
-                    var code = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Descreva a tarefa que será realizada: ");
-                    var task = Console.ReadLine();
-                    Console.WriteLine("Digite a data do início da tarefa (dd/mm/yyyy hh:mm): ");
-                    var begin = DateTime.Parse(Console.ReadLine());
+                    var end = "s";
+                    while (end != "n")
+                    {
 
-                    recordService.AddRegister(
-                        new Record
-                        {
-                            Id = Guid.NewGuid(),
-                            Task = task,
-                            Code = code,
-                            Begin = begin
-                        });
+                        Console.Clear();
+                        Console.Write("Digite o CPF do funcinário da tarefa: ");
+                        var cpf = Console.ReadLine();
+                        var employee = employeeService.SerchForCPF(cpf);
+                        Console.WriteLine();
+                        Console.WriteLine("Informações do funcionário:");
+                        Console.WriteLine($"Nome: {employee.Name}");
+                        Console.WriteLine($"CPF: {employee.CPF}");
+                        Console.WriteLine($"Data de Nascimento: {employee.BithDate}");
+                        Console.WriteLine();
+                        Console.WriteLine("Digite o codigo da tarefa: ");
+                        var code = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Descreva a tarefa que será realizada: ");
+                        var task = Console.ReadLine();
+                        Console.WriteLine("Digite a data do início da tarefa (dd/mm/yyyy hh:mm): ");
+                        var begin = DateTime.Parse(Console.ReadLine());
+
+                        recordService.AddRegister(
+                            new Record
+                            {
+                                Id = Guid.NewGuid(),
+                                Task = task,
+                                Code = code,
+                                Begin = begin,
+                                EmployeeId = employee.Id
+                            });
+
+                        Console.Write("Deseja encerrar realizar outro cadastro?? s/n ");
+                        end = Console.ReadLine();
+                    }
                 }
                 if (option == 2)
                 {
@@ -203,25 +212,33 @@ namespace HoursControl
 
                         if (n == 1)
                         {
-                            Console.Write("Digite o nome do funcionário: ");
-                            var name = Console.ReadLine();
-                            employee.Name = name;
+                            Console.Write("Digite o Código da tarefa: ");
+                            var codeNew = int.Parse(Console.ReadLine());
+                            record.Code = codeNew;
 
-                            employeeService.UpdateRegister(employee);
+                            recordService.UpdateRegister(record);
                         }
                         if (n == 2)
                         {
-                            Console.Write("Digite o CPF do funcionário: ");
-                            cpf = Console.ReadLine();
-                            employee.CPF = cpf;
-                            employeeService.UpdateRegister(employee);
+                            Console.Write("Digite a nova descrição da tarefa: ");
+                            var task = Console.ReadLine();
+                            record.Task = task;
+
+                            recordService.UpdateRegister(record);
                         }
                         if (n == 3)
                         {
-                            Console.Write("Digite a data de nascimento do funcionário: ");
+                            Console.Write("Digite a nova data de inicio da tarefa: ");
                             var date = DateTime.Parse(Console.ReadLine());
-                            employee.BithDate = date;
-                            employeeService.UpdateRegister(employee);
+                            record.Begin = date;
+                            recordService.UpdateRegister(record);
+                        }
+                        if (n == 4)
+                        {
+                            Console.Write("Digite a nova data de inicio da tarefa: ");
+                            var date = DateTime.Parse(Console.ReadLine());
+                            record.End = date;
+                            recordService.UpdateRegister(record);
                         }
                         else
                         {
@@ -235,21 +252,23 @@ namespace HoursControl
                 if (option == 3)
                 {
                     Console.Clear();
-                    Console.Write("Digite o CPF do funcionário que deseja remover: ");
-                    var cpf = Console.ReadLine();
-                    var employee = employeeService.SerchForCPF(cpf);
+                    Console.Write("Digite o codigo da tarefa que deseja remover: ");
+                    var code = int.Parse(Console.ReadLine());
+                    var record = recordService.SerchForCode(code);
                     Console.WriteLine();
-                    Console.WriteLine("Informações atuais do funcionário:");
-                    Console.WriteLine($"Nome: {employee.Name}");
-                    Console.WriteLine($"CPF: {employee.CPF}");
-                    Console.WriteLine($"Data de Nascimento: {employee.BithDate}");
+                    Console.WriteLine();
+                    Console.WriteLine("Informações atuais da tarefa:");
+                    Console.WriteLine($"Código: {record.Code}");
+                    Console.WriteLine($"Tarefa: {record.Task}");
+                    Console.WriteLine($"Data Início: {record.Begin}");
+                    Console.WriteLine($"Data Fim: {record.End}");
                     Console.WriteLine();
                     Console.Write("Confirma a remoção? s/n: ");
                     var confirm = Console.ReadLine();
 
                     if (confirm == "s")
                     {
-                        employeeService.RemoveRegister(employee.Id);
+                        recordService.RemoveRegister(record.Id);
                     }
                     else
                     {
@@ -258,39 +277,6 @@ namespace HoursControl
                 }
             }
 
-
-
-
-
-
-            //Console.Write("Digite o CPF do funcionario que deseja cadastrar a tarefa: ");
-            //var employeeCPF = Console.ReadLine();
-
-            //var employe = employeeService.SerchForCPF(employeeCPF);
-
-            //Console.WriteLine("Informações do funcionário:");
-            //Console.WriteLine($"Nome: {employe.Name}");
-            //Console.WriteLine($"CPF: {employe.CPF}");
-            //Console.WriteLine($"Data de Nascimento: {employe.BithDate}");
-            ////Console.Write("Confirma o inicio do registro?");
-            ////confirma = Console.ReadLine();
-            //Console.WriteLine(" ");
-            //Console.WriteLine("Digite o codigo da tarefa: ");
-            //var code = int.Parse(Console.ReadLine());
-            //Console.WriteLine("Descreva a tarefa que será realizada: ");
-            //var task = Console.ReadLine();
-            //Console.WriteLine("Digite a data do início da tarefa (dd/mm/yyyy hh:mm): ");
-            //var begin = DateTime.Parse(Console.ReadLine());
-            //Console.WriteLine(" ");
-            //Console.WriteLine("Cadastrando tarefa...");
-            //recordService.AddRegister(new Record
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Code = code,
-            //    Task = task,
-            //    Begin = begin,
-            //    EmployeeId = employe.Id
-            //});
 
             //employeeService.AddRegister(
             //    new Employee
