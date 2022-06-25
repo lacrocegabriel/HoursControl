@@ -20,6 +20,11 @@ namespace HoursControl.Application.Services
         {
             return _recordRepository.SerchRegister(id);
         }
+        public Record SerchForCode(int code)
+        {
+            return _recordRepository.SerchForCode(code);
+        }
+        
 
         public void AddRegister(Record record)
         {

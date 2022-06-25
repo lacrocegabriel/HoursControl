@@ -14,6 +14,13 @@ namespace HoursControl.Application.Repository
             return record;
         }
 
+        public Record SerchForCode(int code)
+        {
+            using var db = new ApplicationContext();
+            var record = db.Records.FirstOrDefault(r => r.Code == code);
+            return record;
+        }
+
         public void AddRegister(Record record)
         {
             using var context = new ApplicationContext();
