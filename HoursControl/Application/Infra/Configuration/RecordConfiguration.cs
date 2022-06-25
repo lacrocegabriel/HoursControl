@@ -10,8 +10,10 @@ namespace HoursControl.Application.Infra.Configuration
         {
             builder.ToTable("Records");
             builder.HasKey(p => p.Id);
+            builder.Property(p => p.Code).HasColumnType("BIGINT").IsRequired();
             builder.Property(p => p.Task).HasColumnType("VARCHAR(1000)");
-            builder.Property(p => p.Time).HasColumnType("DATETIME").IsRequired();
+            builder.Property(p => p.Begin).HasColumnType("DATETIME").IsRequired();
+            builder.Property(p => p.End).HasColumnType("DATETIME");
         }
     }
 }

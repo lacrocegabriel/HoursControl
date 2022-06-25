@@ -17,6 +17,10 @@ namespace HoursControl.Application.Services
         {
             return _employeeRepository.SerchRegister(id);
         }
+        public Employee SerchForCPF(string cpf)
+        {
+            return _employeeRepository.SearchForCPF(cpf);
+        }
 
         public void AddRegister(Employee record)
         {
