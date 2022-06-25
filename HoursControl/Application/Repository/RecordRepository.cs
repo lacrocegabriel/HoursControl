@@ -10,8 +10,9 @@ namespace HoursControl.Application.Repository
 
         public async void SerchRegister(Guid id)
         {
-            context.Record.AsNoTracking()
-            .FirstOrDefaultAsync(f => f.Id == id);
+            //context.Record.AsNoTracking()
+            //.FirstOrDefaultAsync(f => f.Id == id);
+
         }
 
         public void AddRegister(Record record)
