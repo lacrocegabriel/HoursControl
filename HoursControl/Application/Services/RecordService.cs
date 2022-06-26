@@ -16,16 +16,14 @@ namespace HoursControl.Application.Services
            
         }
 
-        public Record SerchRegister(Guid id)
+        public Record SearchRegister(Guid id)
         {
-            return _recordRepository.SerchRegister(id);
+            return _recordRepository.SearchRegister(id);
         }
-        public Record SerchForCode(int code)
+        public Record SearchForCode(int code)
         {
-            return _recordRepository.SerchForCode(code);
+            return _recordRepository.SearchForCode(code);
         }
-        
-
         public void AddRegister(Record record)
         {
             _recordRepository.AddRegister(record);

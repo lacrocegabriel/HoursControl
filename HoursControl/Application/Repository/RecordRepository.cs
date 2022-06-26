@@ -7,17 +7,24 @@ namespace HoursControl.Application.Repository
     public class RecordRepository : IRecordRepository
     {
         
-        public Record SerchRegister(Guid id)
+        public Record SearchRegister(Guid id)
         {
             using var db = new ApplicationContext();
             var record = db.Records.FirstOrDefault(r => r.Id == id);
             return record;
         }
 
-        public Record SerchForCode(int code)
+        public Record SearchForCode(int code)
         {
             using var db = new ApplicationContext();
             var record = db.Records.FirstOrDefault(r => r.Code == code);
+            return record;
+        }
+
+        public Record SearchForEmployee(Guid id)
+        {
+            using var db = new ApplicationContext();
+            var record = db.Records.FirstOrDefault(r => r.EmployeeId == id);
             return record;
         }
 

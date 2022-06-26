@@ -5,7 +5,7 @@ namespace HoursControl.Application.Repository
 {
     internal class EmployeeRepository : IEmployeeRepository
     {
-        public Employee SerchRegister(Guid id)
+        public Employee SearchRegister(Guid id)
         {
             using var db = new ApplicationContext();
             var employee = db.Employees.FirstOrDefault(e => e.Id == id);
